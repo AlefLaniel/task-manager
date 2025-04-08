@@ -28,7 +28,7 @@ Este é um sistema simples de gestão de tarefas desenvolvido em **Angular 19**,
 
 
 - **Extras (Opcional)**
-  - Ordenação e pesquisa: funcionalidades para ordenar tarefas por data ou status e uma barra de pesquisa para buscar tarefas pelo título.
+  - Ordenação e pesquisa: funcionalidades para ordenar tarefas por status e uma barra de pesquisa para buscar tarefas pelo título.
 
 ## Tecnologias Utilizadas
 
