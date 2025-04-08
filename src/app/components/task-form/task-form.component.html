@@ -1,0 +1,29 @@
+<h2 class="mt-4 ml-4 font-medium" mat-dialog-title>{{ isEdit ? 'Editar Tarefa' : 'Adicionar Tarefa' }}</h2>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="p-4">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Título</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Descrição</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option value="Pendente">Pendente</mat-option>
+      <mat-option value="Em andamento">Em andamento</mat-option>
+      <mat-option value="Concluído">Concluído</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="flex justify-end space-x-2 mt-4">
+    <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">
+      {{ isEdit ? 'Salvar' : 'Adicionar' }}
+    </button>
+  </div>
+</form>
+

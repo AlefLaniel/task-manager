@@ -1,0 +1,53 @@
+<mat-toolbar color="primary">
+    <span>Gestão de Tarefas</span>
+    <span class="flex-grow"></span>
+    <button mat-icon-button (click)="openAddTaskDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-toolbar>
+  
+  <div class="p-4">
+    <div class="mb-4">
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Pesquisar Tarefa</mat-label>
+            <input matInput [(ngModel)]="searchTerm" placeholder="Digite o título da tarefa" />
+        </mat-form-field>
+    </div>
+    <div class="mb-4">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Filtrar por Status</mat-label>
+        <mat-select [(ngModel)]="filterStatus">
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="Pendente">Pendente</mat-option>
+          <mat-option value="Em andamento">Em andamento</mat-option>
+          <mat-option value="Concluído">Concluído</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div *ngFor="let task of filterTasks()" class="bg-white border border-gray-200 rounded-lg shadow p-4 hover:shadow-lg transition cursor-pointer relative"
+          matTooltip="Clique para ver detalhes"
+          (click)="openTaskDetails(task)">
+          <h3 class="text-lg font-bold">{{ task.title }}</h3>
+          <p>{{ task.description.length > 150 ? task.description.substring(0, 150) + '...' : task.description }}</p>
+          <div class="mt-auto flex items-center justify-between">
+            <span
+              class="text-sm mt-4 font-medium"
+              [ngClass]="{
+                'text-yellow-500': task.status === 'Pendente',
+                'text-blue-500': task.status === 'Em andamento',
+                'text-green-500': task.status === 'Concluído'
+              }"
+            >
+              {{ task.status }}
+            </span>
+            <div class="flex justify-between pt-4">
+                <button mat-button color="primary" matTooltip="Editar tarefa" (click)="openEditTaskDialog(task); $event.stopPropagation()">Editar</button>
+                <button mat-button color="warn" matTooltip="Remover tarefa" (click)="removeTask(task.id); $event.stopPropagation()">Remover</button>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  
