@@ -45,7 +45,8 @@ Este é um sistema simples de gestão de tarefas desenvolvido em **Angular 19**,
   npm install -g @angular/cli
 
 ## Instruções de instalação:
-  ```bash
-  npm install
-  ng serve 
+ - Para realizar a instalação e execução, é só executar os seguintes comandos: 
+    ```bash
+    npm install
+    ng serve 
   
