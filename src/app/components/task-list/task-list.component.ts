@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-task-list',
@@ -93,9 +94,16 @@ export class TaskListComponent implements OnInit {
 
   // Método para remover uma tarefa
   removeTask(id: number): void {
-    if (confirm('Tem certeza que deseja remover esta tarefa?')) {
-      this.taskService.removeTask(id);
-    }
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '300px',
+      data: 'Tem certeza que deseja remover esta tarefa?',
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.taskService.removeTask(id);
+      }
+    });
   }
 
   // Método para abrir o diálogo de edição de tarefa
