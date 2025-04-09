@@ -31,16 +31,20 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './task-list.component.css',
 })
 export class TaskListComponent implements OnInit {
+  // Array de tarefas
   tasks: Task[] = [];
+  // Variáveis para armazenar o status do filtro e o termo de pesquisa
   filterStatus: string = '';
   searchTerm: string = '';
 
   constructor(private taskService: TaskService, private dialog: MatDialog) {}
 
+  // Método chamado quando o componente é inicializado
   ngOnInit(): void {
     this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
   }
 
+  // Método para abrir o diálogo de adição de tarefa
   openAddTaskDialog(): void {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '400px',
@@ -83,16 +87,18 @@ export class TaskListComponent implements OnInit {
       case 'Concluído':
         return 3;
       default:
-        return 4; // Caso algum status inesperado apareça
+        return 4; 
     }
   }
 
+  // Método para remover uma tarefa
   removeTask(id: number): void {
     if (confirm('Tem certeza que deseja remover esta tarefa?')) {
       this.taskService.removeTask(id);
     }
   }
 
+  // Método para abrir o diálogo de edição de tarefa
   openEditTaskDialog(task: Task): void {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '400px',
@@ -107,6 +113,7 @@ export class TaskListComponent implements OnInit {
     });
   }
 
+  // Método para marcar uma tarefa como concluída
   get filteredTasks(): Task[] {
     if (!this.searchTerm) {
       return this.tasks;
@@ -116,6 +123,7 @@ export class TaskListComponent implements OnInit {
     );
   }
 
+  // Método para abrir o diálogo de detalhes da tarefa
   openTaskDetails(task: Task): void {
     const dialogRef = this.dialog.open(TaskDetailsComponent, {
       width: '400px',

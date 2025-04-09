@@ -18,9 +18,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './task-form.component.css'
 })
 export class TaskFormComponent {
+  // Formulário reativo para a tarefa
   taskForm: FormGroup;
   isEdit: boolean = false;
 
+  // Array de status possíveis
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<TaskFormComponent>,
@@ -37,12 +39,14 @@ export class TaskFormComponent {
     });
   }
 
+  // Método para validar o formulário e fechar o diálogo com os dados da tarefa
   onSubmit(): void {
     if (this.taskForm.valid) {
       this.dialogRef.close(this.taskForm.value);
     }
   }
 
+  // Método para fechar o diálogo sem salvar
   onCancel(): void {
     this.dialogRef.close();
   }

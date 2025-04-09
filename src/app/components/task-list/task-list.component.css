@@ -1,9 +1,9 @@
 .grid > div {
     display: flex;
     flex-direction: column;
-    height: 100%; /* Garante que o card ocupe a altura total */
+    height: 100%; 
   }
   
   .grid > div .mt-auto {
-    margin-top: auto; /* Empurra os botões para o final do card */
+    margin-top: auto; 
   }

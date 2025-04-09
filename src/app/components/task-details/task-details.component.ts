@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './task-details.component.css'
 })
 export class TaskDetailsComponent {
+  // Variável para armazenar a tarefa
   constructor(
     public dialogRef: MatDialogRef<TaskDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public task: Task
